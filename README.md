@@ -1,2 +1,2 @@
 # Jibblet
-My Personal Slack Bot (intergrated with AI!) :D
+My Personal Slack Bot :D
