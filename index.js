@@ -9,6 +9,22 @@ const app = new App({
   socketMode: true
 });
 
+app.command("/dsb-joke", async ({ ack, respond }) => {
+  await ack();
+
+  try {
+    const response = await axios.get("https://official-joke-api.appspot.com/random_joke");
+    await respond({
+      text:
+`${response.data.setup}
+
+${response.data.punchline}`
+    });
+  } catch (err) {
+    await respond({ text: "Failed to fetch a joke." });
+  }
+});
+
 app.command("/dsb-catfact", async ({ ack, respond }) => {
   await ack();
 
@@ -41,3 +57,4 @@ app.command("/dsb-ping", async ({ command, ack, respond }) => {
   await app.start();
   console.log("bot is running!");
 })();
+
